@@ -16,6 +16,8 @@ namespace HelloCSharp
         private string uid;
         private string password;
 
+        public MySqlConnection Connection { get => connection; set => connection = value; }
+
         //Constructor
         public DbConnection()
         {
@@ -33,14 +35,14 @@ namespace HelloCSharp
             connectionString = "SERVER=" + server + ";" + "DATABASE=" +
             database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";CharSet = utf8;";
 
-            connection = new MySqlConnection(connectionString);
+            Connection = new MySqlConnection(connectionString);
         }
 
         public bool OpenConnection()
         {
             try
             {
-                connection.Open();
+                Connection.Open();
                 return true;
             }
             catch (MySqlException ex)
@@ -69,7 +71,7 @@ namespace HelloCSharp
         {
             try
             {
-                connection.Close();
+                Connection.Close();
                 return true;
             }
             catch (MySqlException ex)
